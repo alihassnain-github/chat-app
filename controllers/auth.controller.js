@@ -2,6 +2,8 @@ import wppconnect from "@wppconnect-team/wppconnect";
 import { io } from "../app.js";
 import { MAX_ATTEMPTS } from "../constants.js";
 
+export const sessions = new Map();
+
 export async function login(req, res) {
 
     const sessionId = req.query.sessionId || null;
@@ -37,8 +39,12 @@ export async function login(req, res) {
                 }
             }
         )
-            .then((client) => start(client))
-            .catch((error) => console.log(error));
+            .then((client) => {
+                sessions.set(sessionId, client);
+
+                start(client);
+            })
+            .catch((err) => console.error(err));
     } catch (error) {
         console.error("Error login: ", error);
         res.status(500).json({

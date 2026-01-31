@@ -11,6 +11,9 @@ importers:
       '@wppconnect-team/wppconnect':
         specifier: ^1.38.0
         version: 1.38.0(puppeteer-core@24.36.1)
+      cors:
+        specifier: ^2.8.6
+        version: 2.8.6
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3

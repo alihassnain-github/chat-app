@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 io.on("connection", (socket) => {
     console.log("A user connected:", socket.id);
 
-    socket.on("join_session", (sessionId) => {
+    socket.on("join", (sessionId) => {
         socket.join(sessionId);
         console.log(`Socket ${socket.id} joined session room: ${sessionId}`);
     });
